@@ -13,8 +13,12 @@ def main(message):
 def main(message):
     bot.send_message(message.from_user.id, message)
 @bot.message_handler()
-def hello(message):
-    if message.text.lower() == 'Здравствуйте' or 'Привет' or 'Доброго времени суток':
+def chateh(message):
+    if message.text.lower() == 'как дела?':
+        bot.send_message(message.chat.id, 'Отлично, а у вас как?')
+    elif message.text.lower() == 'до свидания':
+        bot.send_message(message.chat.id, 'До свидания')
+    elif message.text.lower() == 'здравствуйте' or 'привет' or 'доброго времени суток':
         n = random.randint(1,4)
         if n == 1:
             bot.send_message(message.chat.id, f'Доброго времени суток, @{message.from_user.username}')
@@ -24,4 +28,6 @@ def hello(message):
             bot.send_message(message.chat.id, f'Здравствуйте, @{message.from_user.username}')
         elif n == 4:
             bot.send_message(message.chat.id, f'Здравствуйте, {message.from_user.first_name}')
+    else:
+        bot.send_message(message.from_user.id, message)
 bot.infinity_polling()
