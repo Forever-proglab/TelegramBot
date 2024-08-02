@@ -11,7 +11,7 @@ def main(message):
     bot.send_message(message.chat.id, f'Это ваше имя пользователя, второе средство для отличия аккаунтов после id - @{message.from_user.username}')
 @bot.message_handler(commands=['minfo'])
 def main(message):
-    bot.send_message(message.from_user.id, message)
+    bot.reply_to(message.from_user.id, message)
 @bot.message_handler()
 def chateh(message):
     if message.text.lower() == 'как дела?':
@@ -28,6 +28,8 @@ def chateh(message):
             bot.send_message(message.chat.id, f'Здравствуйте, @{message.from_user.username}')
         elif n == 4:
             bot.send_message(message.chat.id, f'Здравствуйте, {message.from_user.first_name}')
-    else:
-        bot.send_message(message.from_user.id, message)
+@bot.message_handler(content_types=['photo'])
+def get_photo(message):
+    bot.send_message(message.chat.id, '👍')
+    bot.send_message(message.from_user.id, message.photo)
 bot.infinity_polling()
