@@ -4,11 +4,12 @@ n = 1
 bot = telebot.TeleBot('7391308423:AAHD2HdQEgJSPrdz3FN3mjp2fuALawB-G8A')
 @bot.message_handler(commands=['start', 'hello'])
 def main(message):
-    bot.send_message(message.chat.id, f'Доброго времени суток, {message.from_user.first_name}')
+    bot.send_message(message.chat.id, f'Здравствуйте, {message.from_user.first_name}')
 @bot.message_handler(commands=['id'])
 def main(message):
     bot.send_message(message.chat.id, f'Это ваш id, основное средство для отличия аккаунтов - {message.from_user.id}')
     bot.send_message(message.chat.id, f'Это ваше имя пользователя, второе средство для отличия аккаунтов после id - @{message.from_user.username}')
+    bot.send_message(message.chat.id, f'Это ваше имя  - {message.from_user.first_name}')
 @bot.message_handler(commands=['minfo'])
 def main(message):
     bot.reply_to(message.from_user.id, message)
@@ -19,15 +20,13 @@ def chateh(message):
     elif message.text.lower() == 'до свидания':
         bot.send_message(message.chat.id, 'До свидания')
     elif message.text.lower() == 'здравствуйте' or 'привет' or 'доброго времени суток':
-        n = random.randint(1,4)
+        n = random.randint(1,2)
         if n == 1:
-            bot.send_message(message.chat.id, f'Доброго времени суток, @{message.from_user.username}')
-        elif n == 2:
-            bot.send_message(message.chat.id, f'Доброго времени суток, {message.from_user.first_name}')
-        elif n == 3:
             bot.send_message(message.chat.id, f'Здравствуйте, @{message.from_user.username}')
-        elif n == 4:
+        else:
             bot.send_message(message.chat.id, f'Здравствуйте, {message.from_user.first_name}')
+    if message.text.lower() != 'здравствуйте' or 'привет' or 'доброго времени суток' or 'как дела?' or 'до свидания':
+        bot.send_message(message.chat.id, 'Что?')
 @bot.message_handler(content_types=['photo'])
 def get_photo(message):
     bot.send_message(message.chat.id, '👍')
