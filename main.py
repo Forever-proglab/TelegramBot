@@ -25,8 +25,6 @@ def chateh(message):
             bot.send_message(message.chat.id, f'Здравствуйте, @{message.from_user.username}')
         else:
             bot.send_message(message.chat.id, f'Здравствуйте, {message.from_user.first_name}')
-    if message.text.lower() != 'здравствуйте' or 'привет' or 'доброго времени суток' or 'как дела?' or 'до свидания':
-        bot.send_message(message.chat.id, 'Что?')
 @bot.message_handler(content_types=['photo'])
 def get_photo(message):
     bot.send_message(message.chat.id, '👍')
